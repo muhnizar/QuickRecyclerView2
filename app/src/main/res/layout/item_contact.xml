@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     >
 
-
-
     <TextView
         android:id="@+id/contact_name"
         android:layout_width="wrap_content"
