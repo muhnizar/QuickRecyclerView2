@@ -13,25 +13,21 @@
         android:contentDescription="TODO"
         android:src="@drawable/ic_launcher" />
 
-    <TextView
-        android:id="@+id/contact_name"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_toRightOf="@id/icon"
-
-        />
-
     <Button
         android:id="@+id/message_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_height="35dp"
         android:textSize="10sp"
         android:layout_toRightOf="@id/icon"
+        android:layout_below="@+id/contact_name"
         />
 
+    <TextView
+        android:id="@+id/contact_name"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/icon"
+        android:layout_marginLeft="5dp"
+        />
 </RelativeLayout>
