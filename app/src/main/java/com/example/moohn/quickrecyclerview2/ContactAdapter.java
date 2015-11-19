@@ -1,6 +1,7 @@
 package com.example.moohn.quickrecyclerview2;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,11 @@ import java.util.List;
  * Created by moohn on 11/17/2015.
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
+
+    public void addMoreContacts (Contact contact){
+        int insertionPosition = mContacts.size();
+        mContacts.add(0, contact);
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -47,11 +53,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             msgButton.setEnabled(true);
         }else {
             msgButton.setText("offline");
-            msgButton.setEnabled(true);
+            msgButton.setEnabled(false);
         }
-// create onclick listener
-/*???????????????????????????????*/
-
     }
 
     @Override
