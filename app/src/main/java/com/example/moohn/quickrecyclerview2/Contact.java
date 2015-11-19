@@ -33,7 +33,7 @@ public class Contact {
     }
 
     /*Create dummy list of data*/
-    public List<Contact> createContactList(int  num){
+    public static List<Contact> createContactList(int  num){
     List<Contact> contacts = new ArrayList<Contact>();
         for (int i = 0; i < num ; i++) {
             contacts.add(new Contact("person" + i , (i%2==0? true : false)) );
