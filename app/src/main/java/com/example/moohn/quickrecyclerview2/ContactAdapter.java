@@ -11,14 +11,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by moohn on 11/17/2015.
- */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
 
     public void addMoreContacts (Contact contact){
-        int insertionPosition = mContacts.size();
         mContacts.add(0, contact);
+        notifyItemInserted(0);
     }
 
     @Override
@@ -30,11 +27,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         //inflate the layout
         View contactLayout = inflater.inflate(R.layout.item_contact,parent,false);
 
-        //initiate a new ViewHolder Instance
-        ViewHolder viewHolder = new ViewHolder(contactLayout);
-
-
-        return viewHolder;
+        return new ViewHolder(contactLayout);
     }
 
     @Override

@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adapter.addMoreContacts(new Contact("New Person ", true));
-                adapter.notifyItemInserted(0);
                 rvContacts.scrollToPosition(0);
             }
         });
