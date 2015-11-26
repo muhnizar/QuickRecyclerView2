@@ -1,7 +1,6 @@
 package com.example.moohn.quickrecyclerview2;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +11,22 @@ import android.widget.TextView;
 import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
+    private List<Contact> mContacts;
+
+    public ContactAdapter(List<Contact> contacts) {
+        mContacts = contacts;
+    }
 
     public void addMoreContacts (Contact contact){
         mContacts.add(0, contact);
         notifyItemInserted(0);
+    }
+
+    public void remove(Contact contact ) {
+        int position = mContacts.indexOf(contact);
+
+        mContacts.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
@@ -31,14 +42,30 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
 //  get the data based on position
-    Contact contact =  mContacts.get(position);
+    final Contact contact =  mContacts.get(position);
 
 //  set item based on data model
-    TextView textView =  holder.name;
-    textView.setText(contact.getName());
+    TextView textViewName =  holder.name;
+    textViewName.setText(contact.getName());
+
+    /*textViewName.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            remove(contact);
+        }
+    });*/
+
+    /*textViewName.setOnLongClickListener(new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            remove(contact);
+            return true;
+        }
+    });*/
+
     Button msgButton = holder.msgButton;
 
         if (contact.isOnline()){
@@ -55,7 +82,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         return mContacts.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener
+    {
 
         public TextView name;
         public Button msgButton;
@@ -67,12 +95,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             name = (TextView) itemView.findViewById(R.id.contact_name);
             msgButton = (Button) itemView.findViewById(R.id.message_button);
 
+            itemView.setOnLongClickListener(this);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int position = getLayoutPosition();
+            Contact contact = mContacts.get(position);
+            remove(contact);
+            return true;
         }
     }
 
-    private List<Contact> mContacts;
-
-    public ContactAdapter(List<Contact> contacts) {
-        mContacts = contacts;
-    }
 }

@@ -9,8 +9,6 @@ import android.widget.Button;
 
 import com.example.android.supportv7.widget.decorator.DividerItemDecoration;
 
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
-
 public class MainActivity extends AppCompatActivity {
     ContactAdapter adapter;
 
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST);
         rvContacts.addItemDecoration(itemDecoration);
 
-        // Setup layout manager for items
+//        Setup layout manager for items
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 //      Control orientation of the items
 //      also supports LinearLayoutManager.HORIZONTAL
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         rvContacts.setLayoutManager(layoutManager);
 
 
-        rvContacts.setItemAnimator(new SlideInUpAnimator());
+//        rvContacts.setItemAnimator(new SlideInUpAnimator()); not working
 
 //        add more contact listener
         Button addMoreButton = (Button) findViewById(R.id.add_more_contacts);
@@ -57,5 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 rvContacts.scrollToPosition(0);
             }
         });
+
+
     }
 }
